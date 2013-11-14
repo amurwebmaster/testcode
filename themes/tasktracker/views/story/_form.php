@@ -14,6 +14,8 @@
     <label for="Story_user" class="required">Дата <span class="required">*</span></label>
 	<?php
     $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+        'model'=>$model,
+        'attribute' => 'date',
         'name'=>'date',
         'language' => 'ru',
         'options'=>array(
@@ -26,7 +28,7 @@
     ));
     ?>
 
-	<?php echo $form->dropDownListRow($model,'status',array('1'=>'new', '2'=>'started', '3'=>'finished', '4'=>'accepted', '5'=>'rejected',)); ?>
+	<?php echo $form->dropDownListRow($model,'status',array($model::IS_NEW=>'Новая', $model::IS_STARTED=>'Начатая', $model::IS_FINISHED=>'Законченная', $model::IS_ACCEPTED=>'Принята', $model::IS_REJECTED=>'Откланена',)); ?>
     
     <?php $users=CHtml::listData(Users::model()->findAll(), 'id' , 'login'); ?>
 

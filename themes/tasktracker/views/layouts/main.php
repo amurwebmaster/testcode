@@ -22,8 +22,8 @@
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'Главная', 'url'=>array('/site/index')),
-                array('label'=>'О задаче', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>'Контакты', 'url'=>array('/site/contact')),
+                array('label'=>'Задачи', 'url'=>array('/story')),
+                array('label'=>'Коментарии', 'url'=>array('/storycoment')),
                 array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),

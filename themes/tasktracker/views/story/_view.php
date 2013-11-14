@@ -1,28 +1,6 @@
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-	<?php echo CHtml::encode($data->title); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date')); ?>:</b>
-	<?php echo CHtml::encode($data->date); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user')); ?>:</b>
-	<?php echo CHtml::encode($data->user); ?>
-	<br />
-
-
-</div>
+<tr>
+<td><?php echo '<a href="?r=story/view&id='.$data->id.'"><b>'.$data->title.'</b></a>' ?></td>
+<td><?php echo '<a href="?r=story&user='.$data->user.'">'.$data->id0->login.'</a>' ?></td>
+<td><?php echo '<a href="?r=story&status='.$data->status.'">'.$data->returnTaskLabels($data->status).'</a>' ?></td>
+<td><?php echo $data->date ?></td>
+</tr>

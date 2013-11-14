@@ -1,6 +1,6 @@
 <?php
 
-class StoryController extends Controller
+class StorycomentController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -27,7 +27,7 @@ class StoryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','add'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -61,14 +61,14 @@ class StoryController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Story;
+		$model=new StoryComent;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Story']))
+		if(isset($_POST['StoryComent']))
 		{
-			$model->attributes=$_POST['Story'];
+			$model->attributes=$_POST['StoryComent'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -90,9 +90,9 @@ class StoryController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Story']))
+		if(isset($_POST['StoryComent']))
 		{
-			$model->attributes=$_POST['Story'];
+			$model->attributes=$_POST['StoryComent'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -123,25 +123,11 @@ class StoryController extends Controller
 	}
 
 	/**
-	 * Ïğîñìîòğ âñåõ çàïèñåé è âûáîğêà çàïèñåé ïî óñëîâèş.
+	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-	    $criteria=new CDbCriteria; // Ñîçäàåì ıêçåìïëÿğ êëààñà âûáîğêè ïî óñëîâèş
-        $pagination = new CPagination; // Ñîçäàåì ıêçåìïëÿğ êëààñà ïàãèíàöèè çàïèñåé
-        $pagination->pageSize = 8; // Êîëè÷åñòâî çàïèñåé íà ñòğàíèöó
-        $criteria->order='date DESC';
-        if(isset($_GET['status']))
-        {
-            $criteria->condition='status=:status';
-            $criteria->params=array(':status'=>$_GET['status']);
-        }
-        if (isset($_GET['user']))
-        {
-            $criteria->condition='user=:user';
-            $criteria->params=array(':user'=>urldecode($_GET['user']));
-        }
-		$dataProvider=new CActiveDataProvider('Story',array('criteria'=>$criteria, 'pagination'=>$pagination));;
+		$dataProvider=new CActiveDataProvider('StoryComent');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -152,15 +138,36 @@ class StoryController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Story('search');
+		$model=new StoryComent('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Story']))
-			$model->attributes=$_GET['Story'];
+		if(isset($_GET['StoryComent']))
+			$model->attributes=$_GET['StoryComent'];
 
 		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}
+    
+    /**
+     * Äîáàâëÿåì êîììåíòàğèé ê çàäà÷å
+     * AJAX POST
+     * */
+    public function actionAdd()
+    {
+        $model=new StoryComent;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['text'])&&isset($_POST['user'])&&isset($_POST['story']))
+		{
+			$model->text=$_POST['text'];
+            $model->coment_user=$_POST['user'];
+            $model->num_story=$_POST['story'];
+			if($model->save(false))
+				echo('OK');
+		}
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -169,7 +176,7 @@ class StoryController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Story::model()->with('id0')->findByPk($id);
+		$model=StoryComent::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -181,7 +188,7 @@ class StoryController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='story-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='story-coment-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

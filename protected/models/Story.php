@@ -14,7 +14,12 @@
  */
 class Story extends CActiveRecord
 {
-		/**
+    const IS_NEW = 1; // Новая задача
+    const IS_STARTED = 2; // Начатая задача
+    const IS_FINISHED = 3; // Законченная задача
+    const IS_ACCEPTED = 4; // Принятая задача
+    const IS_REJECTED = 5; // Отклоненная задача
+     /**
 	 * Возвращение статической модели AR класса.
 	 * @param string $className Имя AR класса.
 	 * @return Возвращает статический класс Users
@@ -53,7 +58,7 @@ class Story extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Users', 'id'),
+			'id0' => array(self::BELONGS_TO, 'Users', 'user'),
 		);
 	}
 
@@ -68,9 +73,23 @@ class Story extends CActiveRecord
 			'description' => 'Описание',
 			'date' => 'Дата',
 			'status' => 'Состояние',
-			'user' => 'Пользователь',
+			'user' => 'Ответственный',
 		);
 	}
+    
+    
+    /**
+	 * @return Название статуса.
+	 */
+    public static function returnTaskLabels($taskcode) // Код статуса
+    {
+        $task_labels=array(self::IS_NEW=>'Новая', 
+                           self::IS_STARTED=>'Начатая', 
+                           self::IS_FINISHED=>'Законченная', 
+                           self::IS_ACCEPTED=>'Принята', 
+                           self::IS_REJECTED=>'Завершена');
+        return $task_labels[$taskcode];
+    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.

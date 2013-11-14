@@ -50,6 +50,7 @@ class Users extends CActiveRecord
 	public function relations()
 	{
 		return array(
+			'storys' => array(self::HAS_MANY, 'Story', 'user'),
 		);
 	}
     
