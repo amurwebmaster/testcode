@@ -1,6 +1,6 @@
 <?php
 
-class StorycomentController extends Controller
+class StoryComentController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -158,14 +158,20 @@ class StorycomentController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['text'])&&isset($_POST['user'])&&isset($_POST['story']))
 		{
-			$model->text=$_POST['text'];
+		  if($_POST['text']!='')
+          {
+            $model->text=$_POST['text'];
             $model->coment_user=$_POST['user'];
             $model->num_story=$_POST['story'];
-			if($model->save(false))
-				echo('OK');
+            
+			if($model->save())
+			{
+			     $this->renderPartial('y2', array('cd'=>$_POST['story']));
+			}
+          }
+			
 		}
     }
 

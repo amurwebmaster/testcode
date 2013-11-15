@@ -18,12 +18,9 @@ $this->menu=array(
 <blockquote><p><?php echo $model->description  ?></p></blockquote><br />
 
 <i class="icon-user"></i> <?php echo $model->id0->login; ?>&nbsp;&nbsp;&nbsp;<i class="icon-calendar"></i> <?php echo $model->date; ?>  &nbsp;&nbsp;&nbsp;<i class="btn btn-success"><?php echo $model->returnTaskLabels($model->status); ?></i>
-<div class="coments">
-<!-- Прошу прощения но пока не буду виджет писать, хочу побыстрее сдать работу -->
-<?php 
- StoryComent::ShowComent($model->id);
+<?php
+$this->Widget('application.components.widgets.Coments.Coments', array('story'=>$model->id));
 ?>
-</div>
 <hr />
 <p>
 <?php $coment=StoryComent::model(); ?>
@@ -36,7 +33,7 @@ $this->menu=array(
 
 <div class="form-actions">
         
-		<?php echo Chtml::ajaxButton('Отправить', '?r=storycoment/add', array('type'=>'POST', 'data'=>array('text'=>'js:$("#StoryComent_text").val()','user'=>Yii::app()->user->isGuest?0:Yii::app()->user->id, 'story'=>$model->id), 'success'=>'js:alert("Ваш комментарий добавлен")',  'update' => '.coments',)) ?>
+		<?php echo Chtml::ajaxLink('Отправить', '?r=storycoment/add', array('type'=>'POST', 'data'=>array('text'=>'js:$("#StoryComent_text").val()','user'=>Yii::app()->user->isGuest?0:Yii::app()->user->id, 'story'=>$model->id), 'complete'=>'js:function(){alert("Коментарий успешно добавлен"); $("#StoryComent_text").val(\'\')}', 'replace' => '#last'), array('id'=>'gocoment')) ?>
 	</div>
 
 <?php $this->endWidget(); ?>

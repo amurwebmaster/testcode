@@ -60,13 +60,24 @@ class StoryComent extends CActiveRecord
 		);
 	}
     
-    public static function ShowComent($story)
+    
+    /**
+	 * @return Список моделей заданного задания.
+	 */
+    public static function ShowComent($story) 
     {
-        $coment_list=StoryComent::model()->findAll('num_story=:story', array(':story'=>$story));
-        foreach ($coment_list as $one_comment)
-        {
-            echo('<li>'.$one_comment->text.' | '.$one_comment->comentUser->login.'</li>');
-        }
+        $coment_list=StoryComent::model()->with('comentUser')->findAll('num_story=:story', array(':story'=>$story));
+        return $coment_list;
+    }
+    
+    
+    /**
+	 * @return Последний коментарий.
+	 */
+    public static function ShowLastComent($story)
+    {
+        $coment_list=StoryComent::model()->find(array('condition'=>'num_story=:story', 'params'=>array(':story'=>$story), 'order'=>'id DESC'));
+        return $coment_list;
     }
 
 	/**

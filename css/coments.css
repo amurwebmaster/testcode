@@ -1,0 +1,28 @@
+.coments
+{
+    
+}
+
+.coments ul
+{
+   list-style: none; 
+}
+
+.coments ul li
+{
+   display: block;
+   padding:5px 1.06382978723404%; 
+   margin: 15px 1.06382978723404%;
+   border: solid 1px #333;
+   border-radius: 10px;
+   -moz-border-radius: 10px;
+   -web-kit-border-radius: 10px;
+   -o-border-radius: 10px;
+}
+
+.coments ul li>span
+{
+   display: block;
+   border-top: solid 1px #CCC;
+}
+

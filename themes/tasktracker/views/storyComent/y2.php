@@ -1,0 +1,1 @@
+<?php $lc=StoryComent::ShowLastComent($cd); echo('<li>'.$lc->text.'<span>'.Yii::app()->user->name.'</span></li>') ?><p id="last"><p>
