@@ -8,7 +8,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // CWebApplication могут конфигурироваться здесь.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Test tracker',
+	'name'=>' Task Tracker',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
