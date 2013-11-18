@@ -9,6 +9,7 @@
     <div class="span3">
         <div id="sidebar">
         <?php
+        if(!Yii::app()->user->isGuest){
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title'=>'Операции',
             ));
@@ -16,7 +17,7 @@
                 'items'=>$this->menu,
                 'htmlOptions'=>array('class'=>'operations'),
             ));
-            $this->endWidget();
+            $this->endWidget();}
         ?>
         </div><!-- sidebar -->
     </div>
