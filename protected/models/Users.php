@@ -85,6 +85,11 @@ class Users extends CActiveRecord
             return true;
         return false;
     }
+    
+    public function allUsers()
+    {
+        return Users::model()->findAll();
+    }
 
 	/**
 	 * @return Массив произвольных лейблов для аттрибутов модели.

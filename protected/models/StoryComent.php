@@ -87,7 +87,7 @@ class StoryComent extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'text' => 'Коментарий',
+			'text' => 'Комментарий',
 			'date' => 'Дата',
 			'num_story' => 'Задача',
 			'coment_user' => 'Пользователь',

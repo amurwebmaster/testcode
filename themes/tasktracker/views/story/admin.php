@@ -1,4 +1,5 @@
 <?php
+Yii::app()->clientScript->registerCssFile('./css/story.css');
 $this->breadcrumbs=array(
 	'Задачи'=>array('index'),
 	'Управление задачами',
@@ -8,25 +9,10 @@ $this->menu=array(
 	array('label'=>'Все задачи','url'=>array('index')),
 	array('label'=>'Создать','url'=>array('create')),
 );
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('story-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
 <h1>Управление задачами</h1>
 
-
-<?php echo CHtml::link('Поиск','#',array('class'=>'search-button btn')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -39,11 +25,10 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'title',
-		'description',
+		'title:html',
 		'date',
-		'status',
-		'user',
+		array('name'=>'status', 'type'=>'raw', 'value'=>'Story::returnButyTaskLabels($data->status)'),
+		array('name'=>'user', 'type'=>'raw', 'value'=>'$data->id0->login'),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

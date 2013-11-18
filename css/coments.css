@@ -18,6 +18,7 @@
    -moz-border-radius: 10px;
    -web-kit-border-radius: 10px;
    -o-border-radius: 10px;
+   word-wrap: break-word;
 }
 
 .coments ul li>span

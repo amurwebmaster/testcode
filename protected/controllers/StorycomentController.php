@@ -141,7 +141,7 @@ class StoryComentController extends Controller
 	}
     
     /**
-     * Добавляем комментарий к задаче
+     * Добавляем коментарий к задаче
      * AJAX POST
      * */
     public function actionAdd()

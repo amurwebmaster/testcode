@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Коментарии',
+	'Комментарии',
 );
 
 $this->menu=array(
-	array('label'=>'Создать коментарий','url'=>array('create')),
-	array('label'=>'Управление коментариями','url'=>array('admin')),
+	array('label'=>'Создать комментарий','url'=>array('create')),
+	array('label'=>'Управление комментариями','url'=>array('admin')),
 );
 ?>
 
-<h1>Коментарии</h1>
+<h1>Комментарии</h1>
 
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,

@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Обновить задачу № <?php echo $model->id; ?></h1>
+<h1>Обновить задачу: <i><?php echo $model->title; ?></i></h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

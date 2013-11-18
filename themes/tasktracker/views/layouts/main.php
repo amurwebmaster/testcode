@@ -1,9 +1,9 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+	<meta name="language" content="ru" />
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
 
@@ -17,13 +17,14 @@
 <?php $this->widget('bootstrap.widgets.TbNavbar',array(
     'type'=>'inverse',
     'collapse'=>true,
+    'brand'=>false,
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'Главная', 'url'=>array('/site/index')),
-                array('label'=>'Задачи', 'url'=>array('/story'), 'visible'=>!Yii::app()->user->isGuest),
-                array('label'=>'Коментарии', 'url'=>array('/storycoment'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Задачи', 'url'=>array('/story'), 'visible'=>!Yii::app()->user->isGuest, 'active'=>CController::getId()=='story'),
+                array('label'=>'Коментарии', 'url'=>array('/storyComent'), 'visible'=>!Yii::app()->user->isGuest, 'active'=>CController::getId()=='storyComent'),
                 array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
@@ -44,9 +45,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Copyright &copy; <?php echo date('Y'); ?>  Task Tracker.<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

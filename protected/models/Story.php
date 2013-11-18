@@ -87,8 +87,30 @@ class Story extends CActiveRecord
                            self::IS_STARTED=>'Начатая', 
                            self::IS_FINISHED=>'Законченная', 
                            self::IS_ACCEPTED=>'Принята', 
-                           self::IS_REJECTED=>'Завершена');
+                           self::IS_REJECTED=>'Отклонена');
         return $task_labels[$taskcode];
+    }
+    
+    /**
+	 * @return Название статуса совместно со стилями.
+	 */
+    public static function returnButyTaskLabels($taskcode) // Код статуса
+    {
+        $task_labels=array(self::IS_NEW=>'<i class="task-status-'.self::IS_NEW.'">Новая</i>', 
+                           self::IS_STARTED=>'<i class="task-status-'.self::IS_STARTED.'">Начатая</i>', 
+                           self::IS_FINISHED=>'<i class="task-status-'.self::IS_FINISHED.'">Законченная</i>', 
+                           self::IS_ACCEPTED=>'<i class="task-status-'.self::IS_ACCEPTED.'">Принята</i>', 
+                           self::IS_REJECTED=>'<i class="task-status-'.self::IS_REJECTED.'">Отклонена</i>');
+        return $task_labels[$taskcode];
+    }
+    
+    
+    /**
+	 * @return все задачи.
+	 */
+    public static function returnAllRecords()
+    {
+        return Story::model()->findAll();
     }
 
 	/**

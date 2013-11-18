@@ -11,7 +11,7 @@
         <?php
         if(!Yii::app()->user->isGuest){
             $this->beginWidget('zii.widgets.CPortlet', array(
-                'title'=>'Операции',
+                'title'=>'<h3>Операции:</h3>',
             ));
             $this->widget('bootstrap.widgets.TbMenu', array(
                 'items'=>$this->menu,

@@ -28,7 +28,7 @@
     ));
     ?>
 
-	<?php echo $form->dropDownListRow($model,'status',array($model::IS_NEW=>'Новая', $model::IS_STARTED=>'Начатая', $model::IS_FINISHED=>'Законченная', $model::IS_ACCEPTED=>'Принята', $model::IS_REJECTED=>'Откланена',)); ?>
+	<?php echo $form->dropDownListRow($model,'status',array($model::IS_NEW=>'Новая', $model::IS_STARTED=>'Начатая', $model::IS_FINISHED=>'Законченная', $model::IS_ACCEPTED=>'Принята', $model::IS_REJECTED=>'Отклонена',)); ?>
     
     <?php $users=CHtml::listData(Users::model()->findAll(), 'id' , 'login'); ?>
 
@@ -43,3 +43,6 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+<script>
+$("#Story_title").focus();
+</script>
